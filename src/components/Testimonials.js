@@ -1,86 +1,75 @@
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
-
-const testimonials = [
-  { name: 'John Doe', feedback: 'Amazing work! Highly recommended.', image: '/images/john.jpg' },
-  { name: 'Jane Smith', feedback: 'A talented developer with great skills!', image: '/images/jane.jpg' },
-  { name: 'Sam Green', feedback: 'Delivered everything on time with perfect quality.', image: '/images/sam.jpg' },
-];
 
 const Testimonials = () => {
   return (
-    <TestimonialSection>
-      <SectionTitle>What People Say</SectionTitle>
-      <TestimonialWrapper>
-        {testimonials.map((testimonial, index) => (
-          <TestimonialCard
-            key={index}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <TestimonialImage src={testimonial.image} alt={testimonial.name} />
-            <TestimonialContent>
-              <TestimonialText>"{testimonial.feedback}"</TestimonialText>
-              <TestimonialName>- {testimonial.name}</TestimonialName>
-            </TestimonialContent>
-          </TestimonialCard>
-        ))}
-      </TestimonialWrapper>
-    </TestimonialSection>
+    <TestimonialsSection>
+      <SectionTitle>Certifications</SectionTitle>
+      <CertificationsList>
+        <CertificationItem>
+          <CertificationTitle>Programming - Data Structures and Algorithms in Python</CertificationTitle>
+          <CertificationIssuer>NPTEL</CertificationIssuer>
+        </CertificationItem>
+        <CertificationItem>
+          <CertificationTitle>Introduction to Machine Learning</CertificationTitle>
+          <CertificationIssuer>NPTEL</CertificationIssuer>
+        </CertificationItem>
+        <CertificationItem>
+          <CertificationTitle>SQL Intermediate Certification</CertificationTitle>
+          <CertificationIssuer>HackerRank</CertificationIssuer>
+        </CertificationItem>
+      </CertificationsList>
+    </TestimonialsSection>
   );
 };
 
-const TestimonialSection = styled.div`
-  padding: 4rem 2rem;
-  background-color: #0d0d0d;
-  color: #fff;
-  text-align: center;
+export default Testimonials;
+
+const TestimonialsSection = styled.section`
+  padding: 2rem 0;
+  background-color: ${({ theme }) => theme.body};
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #feb47b;
-`;
-
-const TestimonialWrapper = styled(motion.div)`
-  display: flex;
-  gap: 2rem;
-  overflow: hidden;
-`;
-
-const TestimonialCard = styled(motion.div)`
-  background-color: #1a1a1a;
-  border-radius: 15px;
-  width: 300px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const TestimonialImage = styled.img`
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-`;
-
-const TestimonialContent = styled.div`
-  margin-top: 1rem;
+  font-size: 2rem;
   text-align: center;
+  color: ${({ theme }) => theme.accent};
+  margin-bottom: 1.5rem;
 `;
 
-const TestimonialText = styled.p`
-  font-style: italic;
-  font-size: 1.1rem;
-  color: #ccc;
+const CertificationsList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  color: ${({ theme }) => theme.text};
 `;
 
-const TestimonialName = styled.h4`
+const CertificationItem = styled.li`
+  background: ${({ theme }) => theme.body};
+  border: 1px solid ${({ theme }) => theme.accent};
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const CertificationTitle = styled.h3`
   font-size: 1.2rem;
-  color: #fff;
+  margin: 0;
+  color: ${({ theme }) => theme.text};
 `;
 
-export default Testimonials;
+const CertificationIssuer = styled.p`
+  font-size: 1rem;
+  margin: 0;
+  color: ${({ theme }) => theme.secondaryText};
+`;
